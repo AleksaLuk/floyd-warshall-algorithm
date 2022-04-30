@@ -3,12 +3,12 @@ from numbers import Number
 from floyd_warshall.utils import transform_graph, timeit
 
 
-@timeit
 def fw_imperative(distance: list[list[Number]]) -> list[list[Number]]:
     """
     An imperative implementation of Floyd's algorithm
     """
-    
+
+    distance = distance.copy()
     max_length = len(distance[0])
 
     for intermediate, start_node, end_node in itertools.product(
@@ -28,11 +28,12 @@ def fw_imperative(distance: list[list[Number]]) -> list[list[Number]]:
     return distance
 
 
-@timeit
-def fw_recurive(distance: list[list[Number]]) -> list[list[Number]]:
+def fw_recursive(distance: list[list[Number]]) -> list[list[Number]]:
     """
     A recursive implementation of Floyd's algorithm
     """
+
+    distance = distance.copy()
     lookup = {}
     max_length = len(distance[0])
 
@@ -56,39 +57,39 @@ def fw_recurive(distance: list[list[Number]]) -> list[list[Number]]:
     return distance
 
 
-class FWRecursiveGraph:
-    """Class implementation of the recursive FW algorithm"""
-
-    def __init__(self, distance):
-        self.distance = distance
-        self.max_length = len(distance[0])
-        self.fw_recurive()
-
-    @timeit
-    def fw_recurive(self):
-        """
-        A recursive implementation of Floyd's algorithm
-        """
-        lookup = {}
-
-        def fw_recur(i, j, k):
-            if (i, j, k) in lookup:
-                return lookup[(i, j, k)]
-            if k == 0:
-                return self.distance[i][j]
-
-            distance = min(
-                fw_recur(i, j, k-1),
-                fw_recur(i, k, k-1) + fw_recur(k, j, k-1)
-            )
-            lookup[i, j, k] = distance
-            return distance
-
-        for i in range(self.max_length):
-            for j in range(self.max_length):
-                self.distance[i][j] = fw_recur(i, j, self.max_length-1)
-
-        return self.distance
-
-    def __str__(self):
-        return transform_graph(self.distance)
+# class FWRecursiveGraph:
+#     """Class implementation of the recursive FW algorithm"""
+#
+#     def __init__(self, distance):
+#         self.distance = distance
+#         self.max_length = len(distance[0])
+#         self.fw_recurive()
+#
+#     def fw_recurive(self):
+#         """
+#         A recursive implementation of Floyd's algorithm
+#         """
+#
+#         lookup = {}
+#
+#         def fw_recur(i, j, k):
+#             if (i, j, k) in lookup:
+#                 return lookup[(i, j, k)]
+#             if k == 0:
+#                 return self.distance[i][j]
+#
+#             distance = min(
+#                 fw_recur(i, j, k-1),
+#                 fw_recur(i, k, k-1) + fw_recur(k, j, k-1)
+#             )
+#             lookup[i, j, k] = distance
+#             return distance
+#
+#         for i in range(self.max_length):
+#             for j in range(self.max_length):
+#                 self.distance[i][j] = fw_recur(i, j, self.max_length-1)
+#
+#         return self.distance
+#
+#     def __str__(self):
+#         return transform_graph(self.distance)

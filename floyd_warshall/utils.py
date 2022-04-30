@@ -1,12 +1,14 @@
 import time
 from floyd_warshall.exceptions import InputValidationError
 from tabulate import tabulate
+import sys
 
 
 def transform_graph(distance):
-    return tabulate(
-        [[x if x < 100000000000000 else 'Null' for x in graph] for graph in distance]
+    transformed = tabulate(
+        [[x if x != sys.maxsize else 'Null' for x in graph] for graph in distance]
     )
+    return transformed
 
 
 def timeit(func):
