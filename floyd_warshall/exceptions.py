@@ -6,5 +6,4 @@ This module contains the set of exceptions.
 
 
 class InputValidationError(Exception):
-    """Exception Bro"""
-
+    """Invalid graph input passed by user"""

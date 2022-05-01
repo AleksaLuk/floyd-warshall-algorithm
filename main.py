@@ -1,8 +1,10 @@
 """
-Main module for demonstration
+main
+~~~~~~~~~~~~~~~~~~~
+Main module used for demonstration.
 """
 
-from tabulate import tabulate
+import sys
 from floyd_warshall.algorithm import fw_imperative, fw_recursive
 from floyd_warshall.utils import transform_graph
 from tests.data import graph1 as graph
@@ -22,17 +24,17 @@ print(transform_graph(shortest_paths_rec))
 print("Same result:", shortest_paths_rec == shortest_paths_imp)
 print()
 
-analyse_timing(graph, 100)
+analyse_timing(graph, repeats=100)
+print()
 analyse_profiling(graph)
 
 # Custom input
-import sys
 NO_PATH = sys.maxsize
 
 custom_graph = [
     [0, 7, NO_PATH, 8],
     [NO_PATH, 0, 5, NO_PATH],
     [NO_PATH, NO_PATH, 0, 2],
-    [NO_PATH, NO_PATH, NO_PATH, 0]
+    [NO_PATH, NO_PATH, NO_PATH, 0],
 ]
 print(transform_graph(fw_recursive(custom_graph)))
