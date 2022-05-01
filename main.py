@@ -37,4 +37,12 @@ custom_graph = [
     [NO_PATH, NO_PATH, 0, 2],
     [NO_PATH, NO_PATH, NO_PATH, 0],
 ]
+from tabulate import tabulate
+
+print("List Structure:")
+print([[1,2,3],[4,5,6],[7,8,9]])
+print()
+print("Tabulate Display:")
+print(tabulate([[1,2,3],[4,5,6],[7,8,9]]))
+print()
 print(transform_graph(fw_recursive(custom_graph)))

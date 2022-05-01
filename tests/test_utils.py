@@ -5,7 +5,7 @@ This module contains tests which validate the utility functions.
 """
 
 import unittest
-import mock
+from unittest import mock
 import floyd_warshall.utils as ut
 from floyd_warshall.exceptions import InputValidationError
 
