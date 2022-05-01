@@ -13,6 +13,6 @@ __description__ = "Implementation of recursive and imperative shortest path algo
 __version__ = "0.0.1"
 __author__ = "Aleksandra Lukowska"
 __author_email__ = "alukowska660@gmail.com"
-__url__ = ""
+__url__ = "https://gitlab.csc.liv.ac.uk/sgalukow/floyd-warshall-algorithm-assignment"
 __license__ = "Apache 2.0"
 
